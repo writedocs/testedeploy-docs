@@ -1,0 +1,13 @@
+.tabs__item--active {
+  background-color: var(--ifm-hover-overlay);
+}
+
+.tabs__item:hover {
+  background-color: transparent;
+  border-color: #525860;
+}
+
+.tabs__item--active:hover {
+  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-hover-overlay);
+}

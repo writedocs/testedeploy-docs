@@ -1,0 +1,134 @@
+html {
+  font-family: var(--font-main);
+  color: var(--font-main-color);
+}
+
+* {
+  scroll-margin-top: var(--scroll-top-margin) !important;
+}
+
+.hide_home_btn {
+  display: none !important;
+}
+
+[class^="docMainContainer"] {
+  margin: 0;
+}
+
+.footer {
+  background-color: var(--footer-background-color);
+  padding: 10px;
+}
+
+.footer__copyright {
+  font-size: var(--font-size-small) !important;
+}
+
+@media (min-width: 1440px) {
+  .main-wrapper {
+    align-self: center;
+    max-width: var(--screen-width-max);
+    width: var(--screen-width-max);
+  }
+
+  .navbar__inner {
+    align-self: center;
+    max-width: var(--screen-width-max);
+    width: var(--screen-width-max);
+  }
+}
+
+.navbar .navbar__inner {
+  margin: 0 auto;
+  max-width: var(--screen-width-max);
+  padding: 0;
+}
+
+/*-------------------------------- Markdown Header sizes ------------------------------  */
+
+.markdown h1 {
+  --ifm-h1-font-size: 2.125rem !important;
+}
+
+.markdown h2 {
+  --ifm-h2-font-size: 1.625rem !important;
+}
+
+.markdown h3 {
+  --ifm-h3-font-size: 1.375rem !important;
+}
+
+[class^="copyButtonIcon"],
+[class^="buttonGroup"] .clean-btn {
+  fill: var(--white) !important;
+  stroke: var(--white) !important;
+}
+
+[class^="copyButtonIcon"] path,
+[class^="buttonGroup"] .clean-btn path {
+  fill: var(--white) !important;
+  stroke: var(--white) !important;
+}
+
+.small_tag {
+  margin-left: 5px !important;
+}
+
+.required_tag {
+  margin-left: 5px !important;
+  color: var(--callout-danger-title-color);
+}
+
+.required_tag code {
+  background-color: var(--callout-danger-bkg-color);
+}
+
+@media (min-width: 1201px) {
+  .navbar__items {
+    display: flex;
+  }
+  .navbar__toggle {
+    display: none;
+  }
+}
+
+[class^="docRoot"] {
+  margin: 20px 0 0;
+}
+
+.container.padding-top--md.padding-bottom--lg,
+.col.col--3 {
+  padding-left: 44px;
+}
+
+.breadcrumbs__link:any-link:hover {
+  background-color: transparent !important;
+}
+
+.col.col--12.markdown {
+  padding-right: 0 !important;
+}
+
+.container {
+  margin: 0;
+}
+
+.footer .container.container-fluid {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 996px) {
+  .container.padding-top--md.padding-bottom--lg {
+    padding-left: 16px;
+  }
+
+  .col {
+    padding-right: 0 !important;
+    padding: 0 24px !important;
+  }
+
+  .col.col--12.markdown {
+    padding: 0 16px !important;
+  }
+}
