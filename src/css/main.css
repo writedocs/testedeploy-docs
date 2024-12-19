@@ -132,3 +132,7 @@ html {
     padding: 0 16px !important;
   }
 }
+
+.navbar__title.text--truncate {
+  display: none !important;
+}

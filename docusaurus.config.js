@@ -304,11 +304,16 @@ const config = {
       }),
     ],
   ],
-
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: defineColorScheme(),
+      metadata: [
+        { name: 'og:site_name', content: configurations.websiteName || "" },
+        { name: 'og:title', content: configurations.websiteName || "" },
+        { name: 'og:description', content: configurations.description || "" },
+        { name: 'description', content: configurations.description || "" },
+      ],
       docs: {
         sidebar: {
           // hideable: true,
@@ -327,9 +332,9 @@ const config = {
           scrollOffset: 50,
         },
       },
-      image: configurations.images.logo,
+      image: configurations.images.metadata || configurations.images.logo,
       navbar: {
-        title: '',
+        title: configurations.websiteName || "",
         logo: {
           alt: `${configurations.websiteName} logo`,
           src: configurations.images.logo,
