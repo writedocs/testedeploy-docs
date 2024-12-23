@@ -141,14 +141,41 @@
 
 @media (min-width: 995px) and (max-width: 1060px) {
   .wd_cards_container.grid-columns-auto,
-  .wd_cards_container.grid-columns-1,
-  .wd_cards_container.grid-columns-2,
   .wd_cards_container.grid-columns-3 {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .wd_cards_container.grid-columns-1 {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+
+  .wd_cards_container.grid-columns-2 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 650px) {
+  .wd_cards_container.grid-columns-auto,
+  .wd_cards_container.grid-columns-3,
+  .wd_cards_container.grid-columns-4,
+  .wd_cards_container.grid-columns-5 {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .wd_cards_container.grid-columns-1 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .wd_cards_container.grid-columns-2 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .wd_icon_card {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 350px) {
   .wd_cards_container.grid-columns-auto,
   .wd_cards_container.grid-columns-1,
   .wd_cards_container.grid-columns-2,
@@ -156,9 +183,5 @@
   .wd_cards_container.grid-columns-4,
   .wd_cards_container.grid-columns-5 {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .wd_icon_card {
-    padding: 12px 14px;
   }
 }
