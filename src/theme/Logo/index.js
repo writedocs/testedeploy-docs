@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -44,21 +44,25 @@ export default function Logo(props) {
   // Use logo alt text if provided (including empty string),
   // and provide a sensible fallback otherwise.
   const alt = logo?.alt ?? fallbackAlt;
-
+  
   const hasHomepage =
-    configurations.homepage.endsWith(".html") ||
-    configurations.homepage.endsWith(".jsx") ||
-    configurations.homepage.endsWith(".js");
-
+  configurations.homepage.endsWith(".html") ||
+  configurations.homepage.endsWith(".jsx") ||
+  configurations.homepage.endsWith(".js");
+  
+  
   const { colorMode } = useColorMode();
+  const [imageSrc, setImageSrc] = useState(logo);
 
   const srcDark = {
     ...logo,
     src: configurations.images.darkLogo
   }
 
-  const imageSrc = colorMode === "dark" && srcDark.src ? srcDark : logo;
-
+  useEffect(() => {
+    setImageSrc(colorMode === "dark" && srcDark.src ? srcDark : logo);
+  }, [colorMode])
+  
   if (configurations.homepage && hasHomepage) {
     return (
       <Link
