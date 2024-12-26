@@ -1,0 +1,15 @@
+.alert--support {
+  --ifm-alert-background-color: #ffbb1c26;
+  --ifm-link-color: #f4982b;
+  --ifm-alert-border-color: #f90;
+  border-color: #f4982b;
+}
+
+.alert--support svg {
+  stroke: #f90;
+  fill: #f90 !important;
+}
+
+.alert--support [class^="admonitionHeading"] {
+  color: #f90;
+}

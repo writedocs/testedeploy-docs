@@ -1,0 +1,21 @@
+/* WARNING */
+.alert--training {
+  --ifm-alert-background-color: #f7f7f7;
+  --ifm-link-color: #690;
+  --ifm-alert-border-color: #333;
+  border-color: #333;
+  --ifm-code-background: #4ffd7d3d;
+}
+
+.alert--training .callout_img {
+  width: 20px;
+}
+
+.alert--training svg {
+  stroke: #333;
+  fill: #333 !important;
+}
+
+.alert--training [class^="admonitionHeading"] {
+  color: #333;
+}
