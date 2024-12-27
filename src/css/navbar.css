@@ -149,6 +149,7 @@
 
 .navbar__items {
   gap: 16px;
+  align-items: normal;
 }
 
 .navbar__items .navbar__item:first-of-type {

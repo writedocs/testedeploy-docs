@@ -11,7 +11,7 @@ function definePrimaryColors(mainColor) {
     '--ifm-color-primary-light': adjustLightness(mainColor, 0.2),
     '--ifm-color-primary-lighter': adjustLightness(mainColor, 0.3),
     '--ifm-color-primary-lightest': adjustLightness(mainColor, 0.4),
-    '--transparent-main-color': addTransparency(mainColor, 0.15),
+    '--transparent-main-color': addTransparency(mainColor, 0.08),
     '--transparent-second-color': addTransparency(mainColor, 0.05),
   }
 }
