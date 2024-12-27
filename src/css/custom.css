@@ -32,8 +32,8 @@
   --sidebar-margin-top: 34px;
 
   --link-color: var(--primary-color);
-  --transparent-main-color: rgba(0, 41, 245, 0.25);
-  --transparent-second-color: rgba(0, 41, 245, 0.08);
+  --transparent-main-color: rgba(0, 41, 245, 0.15);
+  --transparent-second-color: rgba(0, 41, 245, 0.05);
 
   --screen-width-max: 1400px;
 
@@ -86,9 +86,11 @@
   --table-body-border-color: var(--main-border-color);
 
   /* SIDEBAR */
-  --sidebar-active-link-background-color: var(--transparent-main-color);
+  --sidebar-active-link-background-color: #ebeeff;
+  --sidebar-active-link-border-color: var(--primary-color);
   --sidebar-hover-link-background-color: var(--transparent-second-color);
-  --sidebar-title-color: var(--primary-color);
+  --sidebar-title-color: #000621;
+  --sidebar-active-title-color: var(--primary-color);
   --sidebar-item-color: var(--font-main-color);
 
   /* NAVBAR */
@@ -134,7 +136,8 @@
   --openapi-button-text-color: var(--bg-defined-text-color);
 
   /* FOOTER */
-  --footer-background-color: var(--primary-color);
+  --footer-background-color: var(--transparent-main-color);
+  --footer-text-color: var(--font-main-color);
 
   /* CALLOUTS */
   --black-100: #f6f6f6;

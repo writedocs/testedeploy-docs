@@ -39,7 +39,9 @@ For readability concerns, you should choose a lighter palette in dark mode.
 
   /* SIDEBAR */
   --sidebar-active-link-background-color: #ffffff1a;
+  --sidebar-active-link-border-color: #fff;
   --sidebar-hover-link-background-color: #ffffff0c;
+  --sidebar-title-color: #fff;
 
   /* TABLE */
   --table-header-background-color: var(--primary-color);

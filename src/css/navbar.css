@@ -1,8 +1,17 @@
+:root {
+  --navbar-border-color: #eff2ff;
+}
+
+[data-theme="dark"] {
+  --navbar-border-color: #2a2c35;
+}
+
 .navbar {
   background: var(--navbar-background-color) !important;
   height: fit-content;
   padding-bottom: 5px;
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  border-bottom: 1px solid var(--navbar-border-color);
+  box-shadow: none;
 }
 
 .navbar__brand {
@@ -22,11 +31,10 @@
   display: flex;
   align-items: center;
   min-width: 140px;
-  margin-left: 10px;
 }
 
 .navbar.navbar--fixed-top {
-  padding-top: 14px;
+  padding-top: 18px;
   padding-bottom: 0;
 }
 
@@ -38,10 +46,6 @@
 .site_logo {
   width: fit-content;
   height: fit-content;
-}
-
-.navbar__item {
-  padding: 0;
 }
 
 .dropdown > .navbar__link:after {
@@ -70,7 +74,7 @@
   transition: all 0.5s ease;
   border: var(--border-thin) transparent;
   border-radius: var(--border-radius-small);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-medium-light);
   padding: var(--navbar-link-padding);
 }
 
@@ -143,8 +147,12 @@
   color: var(--navbar-font-color);
 }
 
-.navbar__item {
-  margin: var(--navbar-margin-items);
+.navbar__items {
+  gap: 16px;
+}
+
+.navbar__items .navbar__item:first-of-type {
+  margin-left: 0 !important;
 }
 
 .navbar-sidebar__brand img {

@@ -3,20 +3,23 @@
 }
 
 .container.margin-vert--lg .col.col--3 {
-  max-width: 311px;
+  max-width: 244px;
+  padding: 0;
+  margin-top: 8px;
 }
 
 .container.margin-vert--lg .col.col--7 {
-  padding-left: 0;
+  padding-left: 44px;
+  max-width: 837px !important;
+  --ifm-col-width: calc(8 / 12 * 100%);
 }
 
 [class^="sidebarItem"] {
   margin: 0 !important;
 }
 
-.wd_sidebar_title,
 [class^="sidebarItemTitle"] {
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin: 24px 0 5px !important;
   color: var(--sidebar-title-color);
   font-feature-settings: "clig" off, "liga" off;
@@ -27,29 +30,38 @@
   line-height: 24px;
 }
 
+[class^="yearGroupHeading"] {
+  margin-top: 1rem !important;
+}
+
 [class^="sidebarItemTitle"] {
   margin: 0 0 5px !important;
 }
 
 [class^="sidebarItemLink"] {
   font-size: var(--font-size-medium);
-  padding: 6px 12px;
-  border-radius: 0.25rem;
+  padding: 4px 12px 8px;
+  border-radius: 0 0.25rem 0.25rem 0;
   margin-bottom: 8px !important;
+  border-left: 1px solid transparent;
+  height: 29px;
 }
 
 [class^="sidebarItemLink"]:hover {
   background: var(--sidebar-hover-link-background-color) !important;
+  border-left: 1px solid var(--sidebar-active-link-border-color);
 }
 
 [class^="sidebarItemLinkActive"],
-.sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module {
+.sidebarItemLinkActive_I1ZP {
   background: var(--sidebar-active-link-background-color) !important;
   color: var(--sidebar-title-color) !important;
   font-weight: var(--font-weight-heavy);
+  border-left: 1px solid var(--sidebar-active-link-border-color);
 }
 
 [class^="sidebarItemLinkActive"]:hover,
-.sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module:hover {
+.sidebarItemLinkActive_I1ZP:hover {
   background: var(--sidebar-active-link-background-color) !important;
+  border-left: 1px solid var(--sidebar-active-link-border-color);
 }

@@ -7,7 +7,7 @@
 .wd_icon_card {
   align-items: flex-start;
   background: var(--card-background-color);
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-medium);
   border: var(--border-thin) var(--main-border-color) !important;
   display: flex;
   flex-direction: column;
