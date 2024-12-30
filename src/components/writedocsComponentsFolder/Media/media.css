@@ -8,6 +8,7 @@
 }
 
 .video_container {
+  border-radius: var(--border-radius-medium) !important;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -169,3 +169,7 @@ html {
 .navbar__title.text--truncate {
   display: none !important;
 }
+
+.row .col.col--12 {
+  padding-right: 0;
+}

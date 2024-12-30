@@ -72,12 +72,19 @@
 .wd_navbar_link_btn {
   background-color: var(--fixed-main-color) !important;
   border: var(--border-thin) transparent !important;
-  border-radius: 40px !important;
+  border-radius: 56px !important;
   color: var(--navbar-active-text-color) !important;
-  padding: 3px 12px !important;
+  padding: 6px 16px !important;
   font-size: var(--font-size-medium) !important;
   text-transform: capitalize;
   transition: all 0.2s ease;
+  max-height: 32px;
+  align-self: center;
+}
+
+.toggle_vylO,
+[class^="toggle_"] {
+  align-self: center;
 }
 
 .wd_navbar_link_btn:hover {
