@@ -2,7 +2,7 @@
   display: var(--pagination-display);
   flex-direction: column;
   flex-shrink: 0;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-medium);
   border: var(--border-thin) var(--pagination-border-color);
   background: var(--pagination-background-color);
   transition: all 0.3s ease;

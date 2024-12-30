@@ -17,5 +17,7 @@ See https://github.com/facebook/docusaurus/pull/9385
   .navbarSearchContainer {
     padding: var(--ifm-navbar-item-padding-vertical)
       var(--ifm-navbar-item-padding-horizontal);
+    height: fit-content;
+    align-self: center;
   }
 }
