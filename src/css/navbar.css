@@ -136,6 +136,8 @@
 .navbar__item,
 .navbar__link {
   font-size: var(--font-size-medium) !important;
+  height: fit-content;
+  align-self: center;
 }
 
 .navbar__toggle {

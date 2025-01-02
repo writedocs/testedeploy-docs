@@ -2,13 +2,35 @@
   margin: 0;
 }
 
+.container.margin-vert--lg .col.col--3 .sidebar_re4s {
+  max-height: fit-content;
+  overflow-y: unset;
+}
+
 .container.margin-vert--lg .col.col--3 {
   max-width: 244px;
   padding: 0;
   margin-top: 8px;
+  font-family: var(--font-main);
+}
+
+.container.margin-vert--lg .col.col--3 [class^="sidebarItemTitle_"] {
+  display: none;
+}
+
+[class^="yearGroupHeading_"] {
+  font-family: var(--font-main) !important;
+  font-size: 14px;
+  margin-top: 0 !important;
+}
+
+.container.margin-vert--lg .col.col--7 [class^="title_"] {
+  font-size: 34px !important;
+  font-family: var(--font-main);
 }
 
 .container.margin-vert--lg .col.col--7 {
+  font-family: var(--font-main);
   padding-left: 44px;
   max-width: 837px !important;
   --ifm-col-width: calc(8 / 12 * 100%);
@@ -30,21 +52,17 @@
   line-height: 24px;
 }
 
-[class^="yearGroupHeading"] {
-  margin-top: 1rem !important;
-}
-
 [class^="sidebarItemTitle"] {
   margin: 0 0 5px !important;
 }
 
 [class^="sidebarItemLink"] {
   font-size: var(--font-size-medium);
-  padding: 4px 12px 8px;
+  padding: 4px 12px;
   border-radius: 0 0.25rem 0.25rem 0;
   margin-bottom: 8px !important;
   border-left: 1px solid transparent;
-  height: 29px;
+  height: fit-content;
 }
 
 [class^="sidebarItemLink"]:hover {

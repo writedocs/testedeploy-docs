@@ -82,14 +82,24 @@
   align-self: center;
 }
 
-.toggle_vylO,
-[class^="toggle_"] {
-  align-self: center;
-}
-
 .wd_navbar_link_btn:hover {
   background-color: var(--fixed-main-hover-color) !important;
   color: var(--navbar-active-text-color) !important;
+}
+
+.wd_navbar_link_only {
+  border: none !important;
+  max-height: 32px;
+  align-self: center;
+}
+
+.wd_navbar_link_only:hover {
+  text-decoration: underline !important;
+}
+
+.toggle_vylO,
+[class^="toggle_"] {
+  align-self: center;
 }
 
 @media (max-width: 996px) {

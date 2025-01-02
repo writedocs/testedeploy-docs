@@ -218,11 +218,12 @@ function createNavigationArray() {
   }
 
   if (externalLinks) {
-    externalLinks.slice(0, 2).forEach(({ link, name }) => {
+    externalLinks.slice(0, 2).forEach(({ link, name, style }) => {
+      const className = style === "link" ? 'wd_navbar_link_only' : 'wd_navbar_link_btn';
       const item = {
         to: link,
         position: 'right',
-        className: 'wd_navbar_link_btn',
+        className: className,
         label: name
       };
       navigationArray.push(item);
