@@ -79,7 +79,6 @@ function fixConfigColors(configFilePath) {
 
       // Write the updated config back to the file.
       fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2), 'utf-8');
-      console.log('Config colors have been validated and fixed where necessary.');
     } else {
       console.warn('No "styles" key found in config.json or it is not an object.');
     }
@@ -93,6 +92,8 @@ function main() {
   fixConfigColors(configFilePath);
   manageCss();
   manageCssDark();
+
+  console.log("[STYLES] CSS Updated\n")
 }
 
 main();

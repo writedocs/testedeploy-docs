@@ -21,6 +21,7 @@
     "reset-api": "docusaurus clean-api-docs all && docusaurus gen-api-docs all && node apiFiles.config.js"
   },
   "dependencies": {
+    "emailjs-com": "^3.2.0",
     "posthog-js": "^1.163.0",
     "writedocs-dependencies": "^1.0.5"
   },

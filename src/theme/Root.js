@@ -3,6 +3,7 @@ import plan from "../../plan.json";
 import DocsBot from "../integrations/DocsBot";
 import PostHogProvider from "../integrations/PostHog";
 import { ApiTokenProvider } from "../context/ApiTokenContext";
+import Feedback from "../components/writedocsComponentsFolder/Feedback/Feedback";
 
 const integrations = {
   docsbot: {
@@ -48,6 +49,7 @@ export default function Root({ children }) {
     },
     <>
       {components}
+      {plan.feedback && <Feedback/>}
       {children}
     </>
   );

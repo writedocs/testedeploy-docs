@@ -18,9 +18,9 @@ function transpileFile(filePath) {
     });
     fse.ensureFileSync(filePath);
     fse.writeFileSync(filePath, result.code, 'utf8');
-    console.log(`Transpiled: ${filePath}`);
+    // console.log(`Transpiled: ${filePath}`);
   } catch (error) {
-    console.error(`Error transpiling file ${filePath}:`, error.message);
+    console.error(`[HOME] Error transpiling file ${filePath}:`, error.message);
   }
 }
 
@@ -75,9 +75,9 @@ const processHomepage = (
   // Write the CSS to a separate file
   try {
     fs.writeFileSync(cssOutputPath, cssContent, 'utf-8');
-    console.log(`CSS written to: ${cssOutputPath}`);
+    // console.log(`CSS written to: ${cssOutputPath}`);
   } catch (err) {
-    console.error(`Error writing CSS to ${cssOutputPath}:`, err.message);
+    console.error(`[HOME] Error writing CSS to ${cssOutputPath}:`, err.message);
     return false;
   }
 
@@ -120,16 +120,16 @@ export default ${componentName};
   // Write the React component to a file
   try {
     fs.writeFileSync(reactComponentOutputPath, reactComponentContent, 'utf-8');
-    console.log(`React component written to: ${reactComponentOutputPath}`);
+    // console.log(`React component written to: ${reactComponentOutputPath}`);
   } catch (err) {
-    console.error(`Error writing React component to ${reactComponentOutputPath}:`, err.message);
+    console.error(`[HOME] Error writing React component to ${reactComponentOutputPath}:`, err.message);
     return false;
   }
 
   // Transpile the React component
   transpileFile(reactComponentOutputPath);
 
-  console.log('CSS and HTML body content have been separated and saved.\n');
+  // console.log('CSS and HTML body content have been separated and saved.\n');
   return true; // Indicate successful processing
 };
 
@@ -144,7 +144,7 @@ function getJson(filePath) {
     const data = fs.readFileSync(configJsonPath, 'utf8');
     return JSON.parse(data);
   } catch (err) {
-    console.error(`Error reading or parsing ${filePath}:`, err.message);
+    console.error(`[HOME] Error reading or parsing ${filePath}:`, err.message);
     process.exit(1);
   }
 }
@@ -177,9 +177,9 @@ function generateLanguagesMap(validLanguages) {
   // Write the languagesMap.js file
   try {
     fs.writeFileSync(languagesMapPath, languagesMapContent, 'utf-8');
-    console.log(`Languages map generated at: ${languagesMapPath}`);
+    // console.log(`Languages map generated at: ${languagesMapPath}`);
   } catch (err) {
-    console.error(`Error writing languagesMap.js:`, err.message);
+    console.error(`[HOME] Error writing languagesMap.js:`, err.message);
   }
 }
 
@@ -235,10 +235,10 @@ function main() {
         if (processed) {
           // If processing was successful, add to validLanguages
           validLanguages.push(lang);
-          console.log(`Successfully processed homepage for language: ${lang}\n`);
+          console.log(`[HOME] Successfully processed homepage for language: ${lang}\n`);
         } else {
           // If processing failed or was skipped, do not add to validLanguages
-          console.log(`Skipped homepage for language: ${lang}\n`);
+          console.log(`[HOME] Skipped homepage for language: ${lang}\n`);
         }
       });
 
@@ -246,10 +246,10 @@ function main() {
       if (validLanguages.length > 0) {
         generateLanguagesMap(validLanguages);
       } else {
-        console.warn('No valid languages were processed. languagesMap.js will not be generated.');
+        console.warn('[HOME] No valid languages were processed. languagesMap.js will not be generated.');
       }
     } else {
-      console.log('No languages specified. Processing default homepage.');
+      console.log('[HOME] No languages specified. Processing default homepage.');
 
       // Define output paths for default homepage
       const defaultCssOutputPath = `./src/pages/homepage.css`;
@@ -267,16 +267,16 @@ function main() {
       if (processed) {
         // Add 'en' as the default language
         validLanguages.push('en');
-        console.log('Successfully processed default homepage.\n');
+        console.log('[HOME] Successfully processed default homepage.\n');
 
         // Generate languagesMap.js with only 'en'
         generateLanguagesMap(['en']);
       } else {
-        console.log('Failed to process the default homepage.');
+        console.log('[HOME] Failed to process the default homepage.');
       }
     }
   } else {
-    console.log(`Homepage deactivated for ${plan} plan`);
+    console.log(`[HOME] Homepage deactivated for ${plan} plan`);
   }
 }
 

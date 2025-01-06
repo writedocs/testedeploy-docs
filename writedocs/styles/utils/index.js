@@ -9,52 +9,38 @@ function getTextColor(backgroundColor) {
   return luminance > 0.5 ? '#000000' : '#FFFFFF';
 }
 
-function navbarTotalItems(externalLinks, navbar, homepage) {
+function navbarTotalItems(navbar, homepage) {
   let isHome = 0;
   if (homepage.endsWith('.html')) {
     isHome = 1;
   }
   return navbar.length + isHome;
-  // return externalLinks.length + navbar.length + isHome;
 }
 
-function navbarHeight(externalLinks, navbar, homepage) {
-  // return navbarTotalItems(externalLinks, navbar, homepage) < navbarBreakpoint ? '76px' : '130px';
-  return "130px";
+function navbarHeight(navbar, homepage) {
+  const totalItems = navbarTotalItems(navbar, homepage);
+  return totalItems <= 1 ? "100px" : "130px";
 }
 
-function sidebarTocPosition(externalLinks, navbar, homepage) {
-  return navbarTotalItems(externalLinks, navbar, homepage) < navbarBreakpoint ? '85px' : '108px';
+function sidebarTocPosition(navbar, homepage) {
+  return navbarTotalItems(navbar, homepage) < navbarBreakpoint ? '85px' : '108px';
 }
 
-function sidebarPaddingTop(externalLinks, navbar, homepage, logoSize, navbarMode) {
-  const totalItems = navbarTotalItems(externalLinks, navbar, homepage);
-  if (totalItems <= 1) return '70px';
-  let currentNavbar;
-  if (navbarMode) {
-    currentNavbar = navbarMode.toLowerCase();
-  } else {
-    currentNavbar = totalItems < navbarBreakpoint ? 'compact' : defaultNavbarMode;
-  }
+function sidebarPaddingTop(navbar, homepage) {
+  const totalItems = navbarTotalItems(navbar, homepage);
+  if (totalItems <= 1) return '72px';
+  return "92px";
+}
+
+function sidebarMarginTop(navbar, homepage, logoSize) {
+  const totalItems = navbarTotalItems(navbar, homepage);
   switch (logoSize) {
     case 'large':
-      return totalItems < navbarBreakpoint && currentNavbar === 'compact' ? '76px' : '78px';
+      return totalItems <= 1 ? '35px' : '37px';
     case 'medium':
-      return totalItems < navbarBreakpoint && currentNavbar === 'compact' ? '66px' : '80px';
+      return totalItems <= 1 ? '35px' : '35px';
     default:
-      return totalItems < navbarBreakpoint && currentNavbar === 'compact' ? '66px' : '80px';
-  }
-}
-
-function sidebarMarginTop(externalLinks, navbar, homepage, logoSize) {
-  const totalItems = navbarTotalItems(externalLinks, navbar, homepage);
-  switch (logoSize) {
-    case 'large':
-      return totalItems < navbarBreakpoint ? '34px' : '36px';
-    case 'medium':
-      return totalItems < navbarBreakpoint ? '34px' : '34px';
-    default:
-      return totalItems < navbarBreakpoint ? '35px' : '34px';
+      return totalItems <= 1 ? '36px' : '35px';
   }
 }
 

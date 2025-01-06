@@ -58,8 +58,6 @@ const manageCssDark = () => {
       fs.writeFile(cssFilePath, updatedCSS, 'utf8', (err) => {
         if (err) {
           console.error('Error writing the CSS file:', err);
-        } else {
-          console.log('DarkMode CSS updated');
         }
       });
     });

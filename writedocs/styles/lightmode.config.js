@@ -5,12 +5,10 @@ const {
 } = require('./utils/color');
 const {
   getTextColor,
-  navbarHeight,
-  sidebarTocPosition,
-  sidebarPaddingTop,
-  sidebarMarginTop,
 } = require('./utils');
-const { definePrimaryColors, defineNavbarColors, defineIcons, defineNavbarItems } = require('./utils/cssVariables');
+const { definePrimaryColors, defineNavbarColors, 
+  defineIcons, defineNavbarItems } = require('./utils/cssVariables');
+const { defineSidebar } = require('./utils/sidebarSizes');
 
 function defineFixedValues(mainColor) {
   return {
@@ -19,18 +17,9 @@ function defineFixedValues(mainColor) {
   }
 }
 
-function defineSidebar(externalLinks, navbar, homepage, logoSize, navbarMode) {
-  return {
-    '--scroll-top-margin': navbarHeight(externalLinks, navbar, homepage),
-    '--sidebar-size': sidebarTocPosition(externalLinks, navbar, homepage),
-    '--sidebar-margin-top': sidebarMarginTop(externalLinks, navbar, homepage, logoSize),
-    '--sidebar-padding-top': sidebarPaddingTop(externalLinks, navbar, homepage, logoSize, navbarMode)
-  }
-}
-
 function editCSS(cssContent, config) {
-  const { styles, externalLinks, navbar, homepage } = config;
-  const { mainColor, navbarColor, pagination, logoSize, navbarMode } = styles;
+  const { styles, navbar, homepage } = config;
+  const { mainColor, navbarColor, pagination, logoSize } = styles;
   const navbarFinalColor = navbarColor ? navbarColor : mainColor;
   const searchbarBorderColor = '#dadde1';
 
@@ -42,7 +31,7 @@ function editCSS(cssContent, config) {
     ...defineNavbarColors(mainColor, navbarFinalColor),
     ...defineIcons(isDark),
     ...defineNavbarItems(mainColor, isDark, luminance, logoSize),
-    ...defineSidebar(externalLinks, navbar, homepage, logoSize, navbarMode),
+    ...defineSidebar(navbar, homepage, logoSize),
     ...defineFixedValues(mainColor),
     '--fixed-main-hover-color': adjustLightness(mainColor, -0.2),
     '--pagination-display': pagination ? "flex" : "none",
@@ -84,9 +73,7 @@ const manageCss = () => {
       fs.writeFile(cssFilePath, updatedCSS, 'utf8', (err) => {
         if (err) {
           console.error('Error writing the CSS file:', err);
-        } else {
-          console.log('CSS updated');
-        }
+        } 
       });
     });
   });

@@ -8,7 +8,7 @@ try {
   execSync('node sidebar.config.js', { stdio: 'inherit' });
   execSync('node home.config.js', { stdio: 'inherit' });
   execSync('node ./writedocs/root.config.js', { stdio: 'inherit' });
-  console.log('Prebuild steps completed successfully.');
+  console.log('[BUILD] Prebuild completed successfully.');
 } catch (error) {
   console.error('Error during prebuild steps:', error);
   process.exit(1);

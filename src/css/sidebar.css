@@ -15,11 +15,11 @@
 
 .tableOfContents_node_modules-\@docusaurus-theme-classic-lib-theme-TOC-styles-module,
 .thin-scrollbar.theme-doc-toc-desktop {
-  top: 125px !important;
+  top: var(--scroll-top-margin) !important;
 }
 
 .theme-doc-sidebar-container [class^="sidebar_"] {
-  padding-top: 90px !important;
+  padding-top: var(--sidebar-padding-top) !important;
 }
 
 [class^="theme-doc-sidebar-container"] {

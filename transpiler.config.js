@@ -13,7 +13,7 @@ function transpileFile(inputPath, outputPath) {
     });
     fs.ensureFileSync(outputPath);
     fs.writeFileSync(outputPath, result.code, 'utf8');
-    console.log(`Transpiled: ${inputPath} -> ${outputPath}`);
+    // console.log(`Transpiled: ${inputPath} -> ${outputPath}`);
   } catch (error) {
     console.error(`Error transpiling file ${inputPath}:`, error.message);
   }
@@ -55,7 +55,7 @@ function deleteJSXFiles(libDir, srcDir) {
       if (path.basename(file) === 'RootBackup.jsx') {
       } else {
         fs.removeSync(srcFilePathJSX);
-        console.log(`Deleted: ${srcFilePathJSX}`);
+        // console.log(`Deleted: ${srcFilePathJSX}`);
       }
     }
   });
@@ -77,7 +77,7 @@ function copyLibToSrc() {
       return true;
     }
   });
-  console.log('Files moved from lib to src.');
+  // console.log('Files moved from lib to src.');
 }
 
 // Main function to run the steps

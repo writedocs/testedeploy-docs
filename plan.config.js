@@ -11,7 +11,7 @@ const planConfig = getJson('plan.json');
 
 function freePlanConfiguration() {
   const { plan } = planConfig;
-  console.log(`Current Plan: ${plan}`)
+  // console.log(`Current Plan: ${plan}`)
   if (plan.toLowerCase() === 'free') {
     const componentsDir = path.join(__dirname, 'src', 'components');
     const deprecatedDir = path.join(componentsDir, '_deprecated');
@@ -33,7 +33,7 @@ function freePlanConfiguration() {
           const targetPath = path.join(deprecatedDir, file);
         
           fs.renameSync(filePath, targetPath);
-          console.log(`Moved: ${filePath} -> ${targetPath}`);
+          // console.log(`Moved: ${filePath} -> ${targetPath}`);
         }
       });
     });

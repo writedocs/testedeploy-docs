@@ -49,7 +49,8 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
+      "className": "wd_sidebar_item"
     }
   ],
   "apiReference": [

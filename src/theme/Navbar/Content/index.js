@@ -89,17 +89,6 @@ export default function NavbarContent() {
   const isHomepage = homepage.endsWith('.html') ? 0 : 1;
 
   const totalItems = leftItems.length - isHomepage;
-  const breakpoint = VARIABLES.navbarBreakpoint;
-  let defaultNavbarMode = VARIABLES.defaultNavbarMode;
-  let navbarMode;
-  let navbarToShow;
-
-  if (styles.navbarMode) {
-    navbarMode = styles.navbarMode.toLowerCase();
-    navbarToShow = navbarMode === defaultNavbarMode;
-  } else {
-    navbarToShow = totalItems >= breakpoint;
-  }
 
   const renderRightComponents = () => (
     <>
@@ -146,7 +135,7 @@ export default function NavbarContent() {
         <>
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
-          { !navbarToShow && <NavbarItems items={leftItems} /> }
+          {/* <NavbarItems items={leftItems} /> */}
         </>
       }
       right={
@@ -155,11 +144,12 @@ export default function NavbarContent() {
         renderRightComponents()
       }
     />
-    { navbarToShow ? (
+    <NavbarSecondLine/>
+    {/* { navbarToShow ? (
       <>
         <NavbarSecondLine/>
       </>
-    ) : <div className='navbar_aux_margin'></div> }
+    ) : <div className='navbar_aux_margin'></div> } */}
     </div>
   );
 }

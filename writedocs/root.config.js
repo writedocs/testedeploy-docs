@@ -24,7 +24,7 @@ function restoreOriginalFile() {
     // Ensure the target directory exists
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true });
-      console.log(`Created target directory: ${targetDir}`);
+      // console.log(`Created target directory: ${targetDir}`);
     }
 
     // Read the backup file content
@@ -32,7 +32,7 @@ function restoreOriginalFile() {
 
     // Write the original content to the target file
     fs.writeFileSync(targetFilePath, originalContent, 'utf8');
-    console.log(`Successfully restored ${targetFilePath} from backup.`);
+    // console.log(`Successfully restored ${targetFilePath} from backup.`);
   } catch (error) {
     console.error(`Failed to restore the original file: ${error.message}`);
     process.exit(1); // Exit with a failure code
@@ -46,7 +46,7 @@ function transpileFile(path) {
     });
     fse.ensureFileSync(path);
     fse.writeFileSync(path, result.code, 'utf8');
-    console.log(`Transpiled: ${path} -> ${path}`);
+    // console.log(`Transpiled: ${path} -> ${path}`);
   } catch (error) {
     console.error(`Error transpiling file ${path}:`, error.message);
   }

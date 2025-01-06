@@ -83,8 +83,9 @@ function saveNewSidebar(sidebars, outputPath) {
   fs.writeFile(outputPath, outputContent, 'utf8', (err) => {
     if (err) {
       console.error('Error writing the output file:', err);
-    } else {
-      console.log(`Output saved to ${outputPath}`);
+    } 
+    else {
+      console.log(`[SIDEBAR] Sidebar generated`);
     }
   });
 }
