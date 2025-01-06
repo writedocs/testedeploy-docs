@@ -55,14 +55,14 @@ const YouTubeIframe = ({ src, width, title }) => {
     return <div style={{ color: "red" }}>Error: Video source is required</div>;
   }
 
-  const iframeWidth = width || "100%";
-  const iframeHeight = `calc(${iframeWidth} * 9 / 16)`; // Maintain 16:9 aspect ratio
+  const iframeWidth = width || "800px";
+  const iframeHeight = `calc(${iframeWidth} * 9 / 16)`;
 
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "center", // Horizontally center
+        justifyContent: "center",
         width: "100%",
         marginBottom: "20px",
       }}
@@ -73,6 +73,7 @@ const YouTubeIframe = ({ src, width, title }) => {
           height: iframeHeight,
           position: "relative",
         }}
+        className="youTube_iframe"
       >
         <iframe
           src={src}
@@ -103,7 +104,12 @@ const Video = ({ src, autoPlay, width, title }) => {
 
   return (
     <div className="video_container">
-      <video style={srcVideoStyles} controls autoPlay={autoPlay}>
+      <video
+        style={srcVideoStyles}
+        className="video"
+        controls
+        autoPlay={autoPlay}
+      >
         <source src={useBaseUrl(src)} type="video/mp4" />
         {title ? title : "Your browser does not support the video tag."}
       </video>

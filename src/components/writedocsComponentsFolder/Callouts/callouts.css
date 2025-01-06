@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: var(--font-weight-heavy);
   margin-bottom: 0 !important;
-  text-transform: none !important;
+  text-transform: capitalize !important;
   font-family: var(--font-main);
 }
 
@@ -55,8 +55,16 @@
 
 .no-title-admonition {
   flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 14px 12px 12px 18px;
 }
 
 .no-title-admonition .admonitionContent_UjKb {
   margin: 0;
+  margin-bottom: 2px;
+}
+
+.no-title-admonition .admonitionIcon_kpSf {
+  margin-right: 0;
 }

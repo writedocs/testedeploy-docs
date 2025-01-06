@@ -86,6 +86,9 @@ function getFirstPageFromJson(sectionName) {
 }
 
 function createOpenApiConfig() {
+  if (!configurations.apiFiles || configurations.apiFiles.length === 0) {
+    return null;
+  }
   const fileNames = configurations.apiFiles;
   const directoryPath = 'openAPI';
   const proxyUrl = 'https://proxy.writechoice.io/';
@@ -136,11 +139,20 @@ function createOpenApiConfig() {
     return acc;
   }, {});
 
-  return {
-    id: 'openapi',
-    docsPluginId: 'classic',
-    config,
-  };
+  // return {
+  //   id: 'openapi',
+  //   docsPluginId: 'classic',
+  //   config,
+  // };
+
+  return [
+    "docusaurus-plugin-openapi-docs",
+    {
+      id: 'openapi',
+      docsPluginId: 'classic',
+      config,
+    }
+  ]
 }
 
 function createNavigationArray() {
@@ -368,10 +380,7 @@ const config = {
         maxHits: '7',
         highlightResult: 'true'
       }],
-      [
-        "docusaurus-plugin-openapi-docs",
-        createOpenApiConfig()
-      ],
+      createOpenApiConfig(),
       [
         '@docusaurus/plugin-content-blog',
         {

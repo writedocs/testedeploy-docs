@@ -11,3 +11,7 @@
   border-color: var(--ifm-color-primary);
   background-color: var(--ifm-hover-overlay);
 }
+
+.tabs {
+  margin-bottom: 10px !important;
+}

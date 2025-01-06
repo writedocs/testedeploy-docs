@@ -19,7 +19,8 @@ function navbarTotalItems(externalLinks, navbar, homepage) {
 }
 
 function navbarHeight(externalLinks, navbar, homepage) {
-  return navbarTotalItems(externalLinks, navbar, homepage) < navbarBreakpoint ? '76px' : '130px';
+  // return navbarTotalItems(externalLinks, navbar, homepage) < navbarBreakpoint ? '76px' : '130px';
+  return "130px";
 }
 
 function sidebarTocPosition(externalLinks, navbar, homepage) {
