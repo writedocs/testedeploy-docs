@@ -85,7 +85,7 @@ function saveNewSidebar(sidebars, outputPath) {
       console.error('Error writing the output file:', err);
     } 
     else {
-      console.log(`[SIDEBAR] Sidebar generated`);
+      console.log(`[SIDEBAR] Sidebar generated\n`);
     }
   });
 }
