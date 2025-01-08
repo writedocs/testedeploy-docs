@@ -13,26 +13,26 @@ const DocsBot = () => {
   let integrationAppId = null;
   let integration = null;
 
-  if (configurations.integrations?.docsbot?.intercom) {
+  if (configurations.integrations?.askAi?.intercom) {
     integration = "Intercom";
     IntegrationComponent = IntercomIntegration;
-    integrationAppId = configurations.integrations.docsbot.intercom;
-  } else if (configurations.integrations?.docsbot?.zendesk) {
+    integrationAppId = configurations.integrations.askAi.intercom;
+  } else if (configurations.integrations?.askAi?.zendesk) {
     integration = "Zendesk";
     IntegrationComponent = ZendeskIntegration;
-    integrationAppId = configurations.integrations.docsbot.zendesk;
-  } else if (configurations.integrations?.docsbot?.hubspot) {
+    integrationAppId = configurations.integrations.askAi.zendesk;
+  } else if (configurations.integrations?.askAi?.hubspot) {
     integration = "HubSpot";
     IntegrationComponent = HubspotIntegration;
-    integrationAppId = configurations.integrations.docsbot.hubspot;
-  } else if (configurations.integrations?.docsbot?.freshdesk) {
+    integrationAppId = configurations.integrations.askAi.hubspot;
+  } else if (configurations.integrations?.askAi?.freshdesk) {
     integration = "Freshdesk";
     IntegrationComponent = FreshdeskIntegration;
-    integrationAppId = configurations.integrations.docsbot.freshdesk;
-  } else if (configurations.integrations?.docsbot?.helpscout) {
+    integrationAppId = configurations.integrations.askAi.freshdesk;
+  } else if (configurations.integrations?.askAi?.helpscout) {
     integration = "Help Scout";
     IntegrationComponent = HelpScoutIntegration;
-    integrationAppId = configurations.integrations.docsbot.helpscout;
+    integrationAppId = configurations.integrations.askAi.helpscout;
   }
 
   useEffect(() => {

@@ -17,6 +17,8 @@
   --black: #000;
   --doc-sidebar-width: 256px !important;
 
+  --background-image: transparent;
+
   /* WRITEDOCS VARIABLES */
   --primary-color: var(--ifm-color-primary);
   --primary-color-light: var(--ifm-color-primary-light);

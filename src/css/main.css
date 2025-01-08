@@ -7,6 +7,14 @@ html {
   scroll-margin-top: var(--scroll-top-margin) !important;
 }
 
+#__docusaurus {
+  background-image: var(--background-image);
+  background-size: contain;
+  /* background-position: fixed; */
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
 .hide_home_btn {
   display: none !important;
 }
