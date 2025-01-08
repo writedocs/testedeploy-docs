@@ -1,10 +1,9 @@
-/* WARNING */
 .alert--training {
-  --ifm-alert-background-color: #f7f7f7;
-  --ifm-link-color: #690;
-  --ifm-alert-border-color: #333;
-  border-color: #333;
-  --ifm-code-background: #4ffd7d3d;
+  --ifm-alert-background-color: var(--callout-training-bkg-color);
+  --ifm-link-color: var(--callout-training-link-color);
+  --ifm-alert-border-color: var(--callout-training-title-color);
+  border-color: var(--callout-training-title-color);
+  --ifm-code-background: var(--callout-training-link-color);
 }
 
 .alert--training .callout_img {
@@ -12,10 +11,10 @@
 }
 
 .alert--training svg {
-  stroke: #333;
-  fill: #333 !important;
+  stroke: var(--callout-training-title-color);
+  fill: var(--callout-training-title-color) !important;
 }
 
 .alert--training [class^="admonitionHeading"] {
-  color: #333;
+  color: var(--callout-training-title-color);
 }

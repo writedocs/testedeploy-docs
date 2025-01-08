@@ -174,4 +174,14 @@
   --callout-note-title-color: #262626;
   --callout-note-text-color: #262626;
   --callout-note-link-color: #3d3d3d;
+
+  --callout-training-bkg-color: #f7f7f7;
+  --callout-training-title-color: #333;
+  --callout-training-text-color: #333;
+  --callout-training-link-color: #3d3d3d;
+
+  --callout-support-bkg-color: #ffbb1c26;
+  --callout-support-title-color: #f90;
+  --callout-support-text-color: #80776c;
+  --callout-support-link-color: #f4982b;
 }
