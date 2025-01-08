@@ -3,7 +3,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
 import "./media.css";
 
-export default function Image({ src, srcDark, size, alt }) {
+export default function Image({ src, srcDark, size, width, alt }) {
   const { colorMode } = useColorMode();
 
   const imageSrc = colorMode === "dark" && srcDark ? srcDark : src;
@@ -12,7 +12,7 @@ export default function Image({ src, srcDark, size, alt }) {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    maxWidth: size || "100%",
+    maxWidth: size || width || "100%",
     margin: "auto",
   };
 
