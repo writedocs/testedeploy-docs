@@ -10,10 +10,10 @@ table tbody {
 }
 
 table thead th {
-  border: var(--border-thin) var(--table-header-background-color);
+  /* border: var(--border-thin) var(--table-header-background-color); */
   text-align: left;
-  background: var(--table-header-background-color) !important;
-  color: var(--table-header-text-color);
+  /* background: var(--table-header-background-color) !important; */
+  /* color: var(--table-header-text-color); */
   font-feature-settings: "clig" off, "liga" off;
   font-size: var(--font-size-medium);
   font-style: normal;
@@ -24,7 +24,7 @@ table thead th {
 }
 
 table tr td {
-  background-color: var(--table-body-background-color);
+  /* background-color: var(--table-body-background-color); */
   color: var(--table-body-color);
   font-feature-settings: "clig" off, "liga" off;
   font-size: var(--font-size-medium);
