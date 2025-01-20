@@ -63,6 +63,7 @@ html {
 @media (max-width: 1440px) and (min-width: 996px) {
   .main-wrapper {
     padding-left: 1.3rem;
+    padding-right: 1.3rem;
   }
 }
 @media (min-width: 1441px) {

@@ -6,6 +6,8 @@
   border: 1px solid var(--main-color);
   border-radius: 8px;
   background-color: #fff;
+  max-height: 32px;
+  align-self: center;
 }
 
 /* [data-theme="dark"] .apiTokenInputContainer {
