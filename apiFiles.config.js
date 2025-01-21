@@ -57,17 +57,24 @@ function editFiles(files, importString) {
       fileContent
     );
 
-    // Only proceed if there's no existing component import
-    if (!hasComponentImport) {
-      // Split file content into lines
-      const parts = fileContent.split("---");
-      if (parts.length >= 3) {
-        const metadata = parts[1];
-        const body = parts.slice(2).join("---");
+    // Split file content into lines
+    const parts = fileContent.split("---");
+    if (parts.length >= 3) {
+      const metadata = parts[1];
+      // Remove info_path: line from metadata
+      const updatedMetadata = metadata
+        .split("\n")
+        .filter((line) => !line.trim().startsWith("info_path:"))
+        .join("\n");
 
-        const newContent = `---${metadata}---\n\n${importString}${body}`;
-        fs.writeFileSync(file, newContent, "utf-8");
-      }
+      const body = parts.slice(2).join("---");
+
+      // Only add import string if there's no existing component import
+      const newContent = !hasComponentImport
+        ? `---${updatedMetadata}---\n\n${importString}${body}`
+        : `---${updatedMetadata}---${body}`;
+
+      fs.writeFileSync(file, newContent, "utf-8");
     }
   });
 }
