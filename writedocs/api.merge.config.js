@@ -10,8 +10,11 @@ const extractContentAfterMetadata = (content) => {
   );
   let processedContent = matches ? matches[2].trim() : content;
 
-  // Remove import statements
-  processedContent = processedContent.replace(/import.*?\n/g, "");
+  // Remove only specific import statements
+  processedContent = processedContent.replace(
+    /import.*?from\s+["']@site\/src\/components["'](\s*\/\/\s*apiFiles import\s*)?;\n?/g,
+    ""
+  );
 
   return processedContent.trim();
 };
