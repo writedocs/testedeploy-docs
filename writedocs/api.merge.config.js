@@ -5,7 +5,9 @@ const referenceDir = path.join(__dirname, "../docs/reference");
 const userPagesDir = path.join(__dirname, "../apiPages");
 
 const extractContentAfterMetadata = (content) => {
-  const matches = content.match(/---\n([\s\S]*?)\n---\n([\s\S]*)/);
+  const matches = content.match(
+    /^\s*---[\r\n]+([\s\S]*?)[\r\n]+\s*---[\r\n]+([\s\S]*)/
+  );
   let processedContent = matches ? matches[2].trim() : content;
 
   // Remove import statements
@@ -27,11 +29,11 @@ const processDirectory = (dirPath, isApiPagesDir = true) => {
         const correspondingRefPath = path.join(referenceDir, relativePath);
         processDirectory(fullPath, isApiPagesDir);
       } else if (
-        item.endsWith(".mdx") &&
+        item.endsWith(".endpoint.mdx") &&
         !item.endsWith(".api.mdx") &&
         !item.endsWith("info.mdx")
       ) {
-        const baseName = item.slice(0, -4);
+        const baseName = item.slice(0, -13);
         // Calculate the path for the .api.mdx file in the reference directory
         const relativePath = path.relative(userPagesDir, dirPath);
         const correspondingRefPath = path.join(referenceDir, relativePath);
@@ -77,7 +79,8 @@ const processDirectory = (dirPath, isApiPagesDir = true) => {
     });
   } catch (error) {
     // console.error(`Error processing directory ${dirPath}: ${error.message}`);
-    process.exit(1);
+    // process.exit(1);
+    return;
   }
 };
 
