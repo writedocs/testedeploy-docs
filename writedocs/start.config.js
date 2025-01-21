@@ -2,7 +2,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 
 try {
-  const config = JSON.parse(fs.readFileSync("../config.json", "utf8"));
+  const config = JSON.parse(fs.readFileSync("./config.json", "utf8"));
 
   if (
     config.apiFiles &&
