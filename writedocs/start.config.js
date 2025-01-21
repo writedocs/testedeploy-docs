@@ -1,8 +1,17 @@
 const { execSync } = require("child_process");
+const fs = require("fs");
 
 try {
-  execSync("npm run reset-api", { stdio: "inherit" });
-  execSync("node ./writedocs/api.merge.config.js", { stdio: "inherit" });
+  const config = JSON.parse(fs.readFileSync("../config.json", "utf8"));
+
+  if (
+    config.apiFiles &&
+    Array.isArray(config.apiFiles) &&
+    config.apiFiles.length > 0
+  ) {
+    execSync("npm run reset-api", { stdio: "inherit" });
+    execSync("node ./writedocs/api.merge.config.js", { stdio: "inherit" });
+  }
   execSync("node plan.config.js", { stdio: "inherit" });
   execSync("node translate.config.js", { stdio: "inherit" });
   execSync("node ./writedocs/styles.config.js", { stdio: "inherit" });

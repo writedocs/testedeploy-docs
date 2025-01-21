@@ -1,7 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const COMPONENTS_IMPORT = 'import { Accordion, AccordionGroup, Callout, Card, CardList, Image, Video, Tabs } from "@site/src/components";';
+const COMPONENTS_IMPORT =
+  'import { Video, Accordion, AccordionGroup, Callout, Card, CardList, Image, Tabs } from "@site/src/components"; // apiFiles import';
 
 // Function to recursively get all files in a directory
 function getAllFiles(dirPath, arrayOfFiles) {
@@ -12,7 +13,7 @@ function getAllFiles(dirPath, arrayOfFiles) {
   files.forEach(function (file) {
     if (fs.statSync(path.join(dirPath, file)).isDirectory()) {
       arrayOfFiles = getAllFiles(path.join(dirPath, file), arrayOfFiles);
-    } else if (file.endsWith('.mdx')) {
+    } else if (file.endsWith(".mdx")) {
       arrayOfFiles.push(path.join(dirPath, file));
     }
   });
@@ -22,22 +23,22 @@ function getAllFiles(dirPath, arrayOfFiles) {
 
 // Function to extract components from the index.js file
 function extractComponents(filePath) {
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const fileContent = fs.readFileSync(filePath, "utf-8");
   const exportRegex = /export\s*\{\s*([\s\S]*?)\s*\};/;
   const match = fileContent.match(exportRegex);
 
   if (match && match[1]) {
     const filteredComponents = match[1]
-      .split(',')
-      .filter((component) => component.trim() !== 'TabItem');
-      
+      .split(",")
+      .filter((component) => component.trim() !== "TabItem");
+
     const components = filteredComponents
-      .map((component) =>  component.trim())
-      .join(', ');
+      .map((component) => component.trim())
+      .join(", ");
 
     // Construct the import string
-    const importString = `import { ${components} } from "@site/src/components";`;
-    
+    const importString = `import { ${components} } from "@site/src/components"; // apiFiles import`;
+
     return importString;
   } else {
     return COMPONENTS_IMPORT;
@@ -46,25 +47,33 @@ function extractComponents(filePath) {
 
 // Function to edit the files
 function editFiles(files, importString) {
-  files.forEach(file => {
-    let fileContent = fs.readFileSync(file, 'utf-8');
+  files.forEach((file) => {
+    let fileContent = fs.readFileSync(file, "utf-8");
 
-    fileContent = fileContent.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-    
-    // Split file content into lines
-    const parts = fileContent.split('---');
-    if (parts.length >= 3) {
-      const metadata = parts[1];  
-      const body = parts.slice(2).join('---');
-  
-      const newContent = `---${metadata}---\n\n${importString}${body}`;
-      fs.writeFileSync(file, newContent, 'utf-8');
+    fileContent = fileContent.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+
+    // Check for any import statement from @site/src/components
+    const hasComponentImport = /^import.*from "@site\/src\/components";/m.test(
+      fileContent
+    );
+
+    // Only proceed if there's no existing component import
+    if (!hasComponentImport) {
+      // Split file content into lines
+      const parts = fileContent.split("---");
+      if (parts.length >= 3) {
+        const metadata = parts[1];
+        const body = parts.slice(2).join("---");
+
+        const newContent = `---${metadata}---\n\n${importString}${body}`;
+        fs.writeFileSync(file, newContent, "utf-8");
+      }
     }
   });
 }
 
 function runAddContent(dirPath) {
-  const componentsFilePath = path.join(__dirname, 'src/components/index.js');
+  const componentsFilePath = path.join(__dirname, "src/components/index.js");
   // Get all mdx files in the directory
   const files = getAllFiles(dirPath);
 
@@ -75,10 +84,9 @@ function runAddContent(dirPath) {
   editFiles(files, importString);
 }
 
-
 function main() {
   // const { languages } = getJson('./config.json');
-  const paths = [path.join(__dirname, 'docs/reference')];
+  const paths = [path.join(__dirname, "docs/reference")];
   // if (languages && languages.length > 1) {
   //   languages.slice(1).forEach((lang) => {
   //     paths.push(path.join(__dirname,`i18n/${lang}/docusaurus-plugin-content-docs/current/reference`));
@@ -86,7 +94,7 @@ function main() {
   // }
   paths.forEach((path) => {
     runAddContent(path);
-  })
+  });
 }
 
 main();
