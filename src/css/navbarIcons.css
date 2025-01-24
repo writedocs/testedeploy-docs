@@ -76,7 +76,6 @@
   color: var(--navbar-active-text-color) !important;
   padding: 6px 16px !important;
   font-size: var(--font-size-medium) !important;
-  text-transform: capitalize;
   transition: all 0.2s ease;
   max-height: 32px;
   align-self: center;

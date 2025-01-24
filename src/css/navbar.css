@@ -195,14 +195,14 @@
 }
 
 .dropdown__link:hover {
-  background: var(--transparent-main-color) !important;
+  background: var(--navbar-dropdown-hover-bg) !important;
   color: var(--navbar-font-color);
-  border-left: 1px solid var(--primary-color);
+  border-left: 1px solid var(--navbar-dropdown-hover-border-color);
 }
 
 .dropdown__link--active,
 .dropdown__link--active:hover {
-  background-color: var(--primary-color) !important;
+  background-color: var(--navbar-dropdown-active-bg) !important;
 }
 
 .language_dropdown {

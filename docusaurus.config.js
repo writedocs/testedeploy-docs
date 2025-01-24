@@ -4,9 +4,9 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
-import fs from 'fs';
-import path from 'path';
+import { themes as prismThemes } from "prism-react-renderer";
+import fs from "fs";
+import path from "path";
 import dotenv from "dotenv";
 
 // const languages = ['es', 'en', 'fr', 'de', 'pt', 'it', 'ja']
@@ -15,20 +15,20 @@ dotenv.config();
 
 function getJson(file) {
   const configJsonPath = path.join(__dirname, file);
-  const data = fs.readFileSync(configJsonPath, 'utf8');
+  const data = fs.readFileSync(configJsonPath, "utf8");
   return JSON.parse(data);
 }
 
-const configurations = getJson('config.json');
-const planConfig = getJson('plan.json');
+const configurations = getJson("config.json");
+const planConfig = getJson("plan.json");
 
 function retrieveCustomDomain() {
   try {
     const customDomain = process.env.CUSTOM_DOMAIN;
-    if (!customDomain) return 'https://docs.writedocs.io';
+    if (!customDomain) return "https://docs.writedocs.io";
     return `https://${customDomain}`;
   } catch (error) {
-    return 'https://docs.writedocs.io';
+    return "https://docs.writedocs.io";
   }
 }
 
@@ -40,7 +40,7 @@ function loadGtag() {
         gtag: {
           trackingID: gtag,
           anonymizeIP: true,
-        }
+        },
       };
     }
     if (configurations.integrations.gtag) {
@@ -48,39 +48,40 @@ function loadGtag() {
         gtag: {
           trackingID: configurations.integrations.gtag,
           anonymizeIP: true,
-        }
+        },
       };
     }
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 function getFirstPageFromJson(sectionName) {
   try {
     const jsonData = configurations.sidebars;
 
-    const section = jsonData.find(({ sidebarRef }) => sidebarRef === sectionName);
+    const section = jsonData.find(
+      ({ sidebarRef }) => sidebarRef === sectionName
+    );
 
     if (section) {
       const firstCategory = section.categories[0];
-      
+
       if (firstCategory) {
         const firstPage = firstCategory.pages[0];
-        
+
         if (firstPage) {
-          if (typeof firstPage === 'string') {
+          if (typeof firstPage === "string") {
             return firstPage;
-          } else if (typeof firstPage === 'object' && firstPage.page) {
+          } else if (typeof firstPage === "object" && firstPage.page) {
             return firstPage.page;
-          } else if (typeof firstPage === 'object') {
-            return firstPage.pages[0]
+          } else if (typeof firstPage === "object") {
+            return firstPage.pages[0];
           }
         }
       }
     }
     return null;
   } catch (error) {
-    console.error('Error reading or parsing JSON file:', error);
+    console.error("Error reading or parsing JSON file:", error);
     return null;
   }
 }
@@ -90,11 +91,11 @@ function createOpenApiConfig() {
     return null;
   }
   const fileNames = configurations.apiFiles;
-  const directoryPath = 'openAPI';
-  const proxyUrl = 'https://proxy.writechoice.io/';
-  const outputBaseDir = 'docs/reference';
+  const directoryPath = "openAPI";
+  const proxyUrl = "https://proxy.writechoice.io/";
+  const outputBaseDir = "docs/reference";
 
-  const normalizedFileNames = fileNames.map(fileName => {
+  const normalizedFileNames = fileNames.map((fileName) => {
     // If the path doesn't start with "openapi/", add the directoryPath prefix
     if (!fileName.startsWith(`${directoryPath}/`)) {
       return path.join(directoryPath, fileName);
@@ -124,35 +125,41 @@ function createOpenApiConfig() {
     const fileName = path.parse(file).name;
     const specPath = file;
     const relativePath = path.relative(directoryPath, path.dirname(file));
-    const outputDir = path.join(outputBaseDir, relativePath, fileName.replace('_', '-'));
-    
-    const keyName = relativePath && relativePath !== '.' 
-      ? `${relativePath}-${fileName}` 
-      : fileName;
+    const outputDir = path.join(
+      outputBaseDir,
+      relativePath,
+      fileName.replace("_", "-")
+    );
 
-    acc[keyName] = {
-      specPath,
-      proxy: proxyUrl,
-      outputDir,
-    };
+    const keyName =
+      relativePath && relativePath !== "."
+        ? `${relativePath}-${fileName}`
+        : fileName;
+
+    if (configurations.proxy || planConfig.proxy) {
+      acc[keyName] = {
+        specPath,
+        proxy: proxyUrl,
+        outputDir,
+      };
+    } else {
+      acc[keyName] = {
+        specPath,
+        outputDir,
+      };
+    }
 
     return acc;
   }, {});
 
-  // return {
-  //   id: 'openapi',
-  //   docsPluginId: 'classic',
-  //   config,
-  // };
-
   return [
     "docusaurus-plugin-openapi-docs",
     {
-      id: 'openapi',
-      docsPluginId: 'classic',
+      id: "openapi",
+      docsPluginId: "classic",
       config,
-    }
-  ]
+    },
+  ];
 }
 
 function createNavigationArray() {
@@ -161,96 +168,106 @@ function createNavigationArray() {
 
   const navigationArray = [];
 
-  const navbarWithIcons = ['guides', 'api reference', 'changelog'];
+  const navbarWithIcons = ["guides", "api reference", "changelog"];
   const navbarNames = navbar.map((item) => item.label.toLowerCase());
 
-  const allItemsIncluded = navbarNames.every((name) => navbarWithIcons.includes(name));
+  const allItemsIncluded = navbarNames.every((name) =>
+    navbarWithIcons.includes(name)
+  );
 
   navigationArray.push({
-    to: '/',
-    label: 'Home',
-    position: 'left',
-    className: `home_btn ${!configurations.homepage.endsWith(".html") && 'hide_home_btn'}`,
+    to: "/",
+    label: "Home",
+    position: "left",
+    className: `home_btn ${
+      !configurations.homepage.endsWith(".html") && "hide_home_btn"
+    }`,
   });
 
-  if (plan === 'free') {
-    navigationArray.push(
-      {
-        type: 'docSidebar',
-        position: 'left',
-        sidebarId: 'apiReference',
-        className: 'apireference_btn',
-        label: 'API Reference',
-      }
-    );
+  if (plan === "free") {
+    navigationArray.push({
+      type: "docSidebar",
+      position: "left",
+      sidebarId: "apiReference",
+      className: "apireference_btn",
+      label: "API Reference",
+    });
     return navigationArray;
   }
-  
+
   for (let index in navbar) {
     if (navbar[index].sidebarRef) {
-      if (navbar[index].sidebarRef === 'docs') {
+      if (navbar[index].sidebarRef === "docs") {
         navigationArray.push({
-          type: 'doc',
-          position: 'left',
+          type: "doc",
+          position: "left",
           label: navbar[index].label,
-          className: allItemsIncluded ? `${navbar[index].label.toLowerCase()}_btn` : 'btn',
+          className: allItemsIncluded
+            ? `${navbar[index].label.toLowerCase()}_btn`
+            : "btn",
           docId: getFirstPageFromJson(navbar[index].sidebarRef),
         });
       } else {
         navigationArray.push({
-          type: 'docSidebar',
-          position: 'left',
+          type: "docSidebar",
+          position: "left",
           sidebarId: navbar[index].sidebarRef,
-          className: allItemsIncluded ? `${navbar[index].sidebarRef.toLowerCase()}_btn` : 'btn',
+          className: allItemsIncluded
+            ? `${navbar[index].sidebarRef.toLowerCase()}_btn`
+            : "btn",
           label: navbar[index].label,
         });
       }
     } else if (navbar[index].dropdown) {
       const dropdown = [];
-      navbar[index].dropdown.forEach(({label, sidebarRef}) => {
+      navbar[index].dropdown.forEach(({ label, sidebarRef }) => {
         dropdown.push({
-          type: 'doc',
+          type: "doc",
           label: label,
           docId: getFirstPageFromJson(sidebarRef),
-        })
+        });
       });
       navigationArray.push({
-        type: 'dropdown',
+        type: "dropdown",
         label: navbar[index].label,
-        position: 'left',
-        items: dropdown
-      })
+        position: "left",
+        items: dropdown,
+      });
     }
   }
 
   if (configurations.changelog) {
-    navigationArray.push(
-      {to: 'changelog', label: 'Changelog', position: 'left', className: allItemsIncluded ? 'changelog_btn' : 'btn' },
-    );
+    navigationArray.push({
+      to: "changelog",
+      label: "Changelog",
+      position: "left",
+      className: allItemsIncluded ? "changelog_btn" : "btn",
+    });
   }
 
   if (externalLinks) {
-    externalLinks.slice(0, 2).forEach(({ link, name, style }) => {
-      const className = style === "link" ? 'wd_navbar_link_only' : 'wd_navbar_link_btn';
+    externalLinks.slice(0, 4).forEach(({ link, name, style }) => {
+      const className =
+        style === "link" ? "wd_navbar_link_only" : "wd_navbar_link_btn";
       const item = {
         to: link,
-        position: 'right',
+        position: "right",
         className: className,
-        label: name
+        label: name,
       };
       navigationArray.push(item);
-    })
+    });
   }
 
   if (languages && languages.length > 1) {
     navigationArray.push({
-      type: 'localeDropdown',
-      position: 'right',
-      className: 'language_dropdown'
-    })
+      type: "localeDropdown",
+      position: "right",
+      className: "language_dropdown",
+    });
   }
 
-  navigationArray.push({ type: 'search', position: 'right' });
+  navigationArray.push({ type: "search", position: "right" });
 
   return navigationArray;
 }
@@ -261,15 +278,15 @@ function defineColorScheme() {
     const { default: defaultMode, switchOff } = colorMode;
     return {
       respectPrefersColorScheme: false,
-      defaultMode: defaultMode ? defaultMode : 'light',
-      disableSwitch: switchOff ? true : false
-    }
+      defaultMode: defaultMode ? defaultMode : "light",
+      disableSwitch: switchOff ? true : false,
+    };
   } catch (error) {
     return {
       respectPrefersColorScheme: false,
-      defaultMode: 'light',
-      disableSwitch: false
-    }
+      defaultMode: "light",
+      disableSwitch: false,
+    };
   }
 }
 
@@ -283,27 +300,32 @@ const config = {
   url: retrieveCustomDomain(),
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: "/",
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: configurations.languages ? configurations.languages[0] : "en",
-    locales: configurations.languages && configurations.languages.length > 0 ? configurations.languages : ["en"],
-    path: 'i18n',
+    defaultLocale: configurations.languages
+      ? configurations.languages[0]
+      : "en",
+    locales:
+      configurations.languages && configurations.languages.length > 0
+        ? configurations.languages
+        : ["en"],
+    path: "i18n",
   },
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: "/",
+          sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -311,9 +333,9 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
-        ...loadGtag()
+        ...loadGtag(),
       }),
     ],
   ],
@@ -322,10 +344,10 @@ const config = {
     ({
       colorMode: defineColorScheme(),
       metadata: [
-        { name: 'og:site_name', content: configurations.websiteName || "" },
-        { name: 'og:title', content: configurations.websiteName || "" },
-        { name: 'og:description', content: configurations.description || "" },
-        { name: 'description', content: configurations.description || "" },
+        { name: "og:site_name", content: configurations.websiteName || "" },
+        { name: "og:title", content: configurations.websiteName || "" },
+        { name: "og:description", content: configurations.description || "" },
+        { name: "description", content: configurations.description || "" },
       ],
       docs: {
         sidebar: {
@@ -334,10 +356,10 @@ const config = {
         },
       },
       zoom: {
-        selector: '.markdown :not(em) > img:not(.no_zoom)',
+        selector: ".markdown :not(em) > img:not(.no_zoom)",
         background: {
-          light: 'rgb(255, 255, 255,0.9)',
-          dark: 'rgb(50, 50, 50)',
+          light: "rgb(255, 255, 255,0.9)",
+          dark: "rgb(50, 50, 50)",
         },
         config: {
           // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
@@ -354,10 +376,12 @@ const config = {
         },
         items: createNavigationArray(),
       },
-      navbarBreakpoint: '1060px',
+      navbarBreakpoint: "1060px",
       footer: {
-        style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} | ${configurations.websiteName}`,
+        style: "dark",
+        copyright: `Copyright © ${new Date().getFullYear()} | ${
+          configurations.websiteName
+        }`,
       },
       prism: {
         theme: prismThemes.oceanicNext,
@@ -374,38 +398,41 @@ const config = {
         ],
       },
     }),
-    plugins: [
-      'docusaurus-plugin-image-zoom',
-      [ require.resolve('docusaurus-lunr-search'), {
-        maxHits: '7',
-        highlightResult: 'true'
-      }],
-      createOpenApiConfig(),
-      [
-        '@docusaurus/plugin-content-blog',
-        {
-          id: 'changelog',
-          routeBasePath: 'changelog',
-          path: './changelog',
-          blogSidebarCount: 'ALL',
-          blogSidebarTitle: 'Changelog',
-          showReadingTime: false,
-          blogTitle: 'Changelog',
-          blogDescription: 'Changelog',
-        },
-      ],
-    ],
-    themes: ["docusaurus-theme-openapi-docs"],
-    future: {
-      experimental_faster: {
-        swcJsLoader: true,
-        swcJsMinimizer: true,
-        swcHtmlMinimizer: true,
-        lightningCssMinimizer: true,
-        rspackBundler: false,
-        mdxCrossCompilerCache: true,
+  plugins: [
+    "docusaurus-plugin-image-zoom",
+    [
+      require.resolve("docusaurus-lunr-search"),
+      {
+        maxHits: "7",
+        highlightResult: "true",
       },
+    ],
+    createOpenApiConfig(),
+    [
+      "@docusaurus/plugin-content-blog",
+      {
+        id: "changelog",
+        routeBasePath: "changelog",
+        path: "./changelog",
+        blogSidebarCount: "ALL",
+        blogSidebarTitle: "Changelog",
+        showReadingTime: false,
+        blogTitle: "Changelog",
+        blogDescription: "Changelog",
+      },
+    ],
+  ],
+  themes: ["docusaurus-theme-openapi-docs"],
+  future: {
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: false,
+      mdxCrossCompilerCache: true,
     },
+  },
 };
 
 export default config;

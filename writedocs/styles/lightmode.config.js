@@ -7,6 +7,7 @@ const {
   defineNavbarColors,
   defineIcons,
   defineNavbarItems,
+  defineNavbarDropdownColors,
 } = require("./utils/cssVariables");
 const { defineSidebar } = require("./utils/sidebarSizes");
 const { defineBackground } = require("./utils/images");
@@ -35,6 +36,7 @@ function editCSS(cssContent, config) {
     ...defineSidebar(navbar, homepage, logoSize),
     ...defineFixedValues(mainColor),
     ...defineBackground(images),
+    ...defineNavbarDropdownColors(mainColor, navbarFinalColor, isDark),
     "--fixed-main-hover-color": adjustLightness(mainColor, -0.2),
     "--pagination-display": pagination ? "flex" : "none",
     "--searchbar-border-color": searchbarBorderColor,
